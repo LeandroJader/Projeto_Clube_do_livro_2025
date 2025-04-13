@@ -13,7 +13,7 @@ public class TelaAmigo
 
     }
 
-    public static void ExibirMenuTelaAmigo()
+    public static string MenuTelaAmigo()
     {
         Console.WriteLine("escolha a opção desejada");
         Console.WriteLine("---------------");
@@ -21,6 +21,9 @@ public class TelaAmigo
         Console.WriteLine("2- vizualizar amigos cadastrados");
         Console.WriteLine("3- editar amigos");
         Console.WriteLine("4- excluir amigos");
+
+        string OpcaoEscolhida = Console.ReadLine();
+        return OpcaoEscolhida;
     }
 
 
@@ -95,6 +98,9 @@ public class TelaAmigo
 
     public void ExcluirAmigos()
     {
+        VizualizarAmigos();
+
+
         Console.WriteLine("informe o Id do amigo que deseja excluir ");
         int IdEscolhido = Convert.ToInt32(Console.ReadLine());
 

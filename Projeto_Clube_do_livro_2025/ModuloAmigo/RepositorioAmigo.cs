@@ -50,6 +50,10 @@ namespace Projeto_Clube_do_livro_2025.ModuloAmigo
 
         public bool ExcluirAmigos (int Idescolhido)
         {
+
+          
+
+
           for (int i=0; i<AmigosCadastrados.Length; i++)
             {
                 if (AmigosCadastrados[i].Id == null) continue;

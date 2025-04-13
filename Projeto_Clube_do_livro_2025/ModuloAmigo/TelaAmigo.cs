@@ -13,7 +13,15 @@ public class TelaAmigo
 
     }
 
-
+    public static void ExibirMenuTelaAmigo()
+    {
+        Console.WriteLine("escolha a opção desejada");
+        Console.WriteLine("---------------");
+        Console.WriteLine("1 - cadastrar amigo");
+        Console.WriteLine("2- vizualizar amigos cadastrados");
+        Console.WriteLine("3- editar amigos");
+        Console.WriteLine("4- excluir amigos");
+    }
 
 
     public Amigo ObterDadosAmigos()
@@ -85,8 +93,17 @@ public class TelaAmigo
 
     }
 
-    
+    public void ExcluirAmigos()
+    {
+        Console.WriteLine("informe o Id do amigo que deseja excluir ");
+        int IdEscolhido = Convert.ToInt32(Console.ReadLine());
 
+       bool consegiuExcluir = repositorioamigo.ExcluirAmigos(IdEscolhido);
+
+
+
+    }
+       
 
 
 }

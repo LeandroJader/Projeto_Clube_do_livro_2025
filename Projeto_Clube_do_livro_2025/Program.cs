@@ -16,11 +16,7 @@ namespace Projeto_Clube_do_livro_2025
 
             while (true)
             {
-                Console.WriteLine("escolha a opção desejada");
-                Console.WriteLine("---------------");
-                Console.WriteLine("1 - cadastrar amigo");
-                Console.WriteLine("2- vizualizar amigos cadastrados");
-                Console.WriteLine("3- editar amigos");
+                TelaAmigo.ExibirMenuTelaAmigo();
 
                 string opcaoEscolhida = Console.ReadLine();
 
@@ -46,6 +42,11 @@ namespace Projeto_Clube_do_livro_2025
                         amigos.EditarAmigos();
                         break;
 
+                    case "4":
+                        Console.Clear();
+                        amigos.ExcluirAmigos();
+                        break;
+
 
                     default:
 
@@ -55,5 +56,7 @@ namespace Projeto_Clube_do_livro_2025
                 }
             }
         }
+
+
     }
 }

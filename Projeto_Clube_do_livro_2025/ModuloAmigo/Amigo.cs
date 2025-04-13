@@ -4,13 +4,13 @@
     {
         public int Id;
         public string Nome;
-        public string NomeCompleto;
+        public string NomeResponsavel;
         public string Telefone;
 
-        public Amigo(string nome, string nomeCompleto, string telefone)
+        public Amigo(string nome, string nomeResponsavel, string telefone)
         {
             Nome = nome;
-            NomeCompleto = nomeCompleto;
+            NomeResponsavel = nomeResponsavel;
             Telefone = telefone;
         }
     }

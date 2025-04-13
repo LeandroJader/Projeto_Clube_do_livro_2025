@@ -6,38 +6,47 @@ namespace Projeto_Clube_do_livro_2025
     {
         static void Main(string[] args)
         {
-            TelaAmigo CadastrarAmigo = new TelaAmigo();
+            TelaAmigo amigos = new TelaAmigo();
+
 
 
             Console.WriteLine("---------------");
             Console.WriteLine("Clube Do Livro ");
             Console.WriteLine("---------------");
 
+            while (true)
+            {
             Console.WriteLine("escolha a opção desejada");
             Console.WriteLine("---------------");
             Console.WriteLine("1 - cadastrar amigo");
+            Console.WriteLine("2- vizualizar amigos cadastrados");
 
             string opcaoEscolhida = Console.ReadLine();
 
-            switch (opcaoEscolhida)
-            {
-               
-                case "1" : Console.Clear();
-                    CadastrarAmigo.CadastrarAmigos(); break;
+
+                switch (opcaoEscolhida)
+                {
+
+                    case "1":
+                        Console.Clear();
+                        amigos.CadastrarAmigos(); break;
 
 
 
 
-                case "2": Console.Clear();
-
-                    break;
-
-
-
-                   
-                default: Console.WriteLine("saindo do programa");
+                    case "2":
+                        Console.Clear();
+                        amigos.VizualizarAmigos();
                         break;
 
+
+
+
+                    default:
+                        Console.WriteLine("saindo do programa");
+                        break;
+
+                }
             }
         }
     }

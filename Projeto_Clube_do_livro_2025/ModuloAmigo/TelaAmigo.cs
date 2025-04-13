@@ -1,4 +1,5 @@
 ﻿
+
 namespace Projeto_Clube_do_livro_2025.ModuloAmigo;
 
 public class TelaAmigo
@@ -11,7 +12,7 @@ public class TelaAmigo
         repositorioamigo = new RepositorioAmigo();
 
     }
-    
+
 
 
 
@@ -50,7 +51,7 @@ public class TelaAmigo
                   );
         Console.WriteLine();
 
-        Amigo[] amigosCadastrados = repositorioamigo.selecionarFabricantes();
+        Amigo[] amigosCadastrados = repositorioamigo.SelecionarAmigos();
 
         for (int i = 0; i < amigosCadastrados.Length; i++)
         {
@@ -67,7 +68,26 @@ public class TelaAmigo
 
             }
         }
-        Console.ReadLine();
+       
     }
+
+    public void EditarAmigos()
+    {
+        VizualizarAmigos();
+            
+        Console.WriteLine("informe o id do amigo que deseja editar");
+
+        int IdAmigoEscolhido = Convert.ToInt32(Console.ReadLine());
+
+
+        Amigo amigoEditado = ObterDadosAmigos();
+       bool Consegiueditar = repositorioamigo.EditarAmigos(IdAmigoEscolhido,amigoEditado);
+
+    }
+
+    
+
+
+
 }
 

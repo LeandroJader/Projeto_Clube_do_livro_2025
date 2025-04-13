@@ -16,12 +16,13 @@ namespace Projeto_Clube_do_livro_2025
 
             while (true)
             {
-            Console.WriteLine("escolha a opção desejada");
-            Console.WriteLine("---------------");
-            Console.WriteLine("1 - cadastrar amigo");
-            Console.WriteLine("2- vizualizar amigos cadastrados");
+                Console.WriteLine("escolha a opção desejada");
+                Console.WriteLine("---------------");
+                Console.WriteLine("1 - cadastrar amigo");
+                Console.WriteLine("2- vizualizar amigos cadastrados");
+                Console.WriteLine("3- editar amigos");
 
-            string opcaoEscolhida = Console.ReadLine();
+                string opcaoEscolhida = Console.ReadLine();
 
 
                 switch (opcaoEscolhida)
@@ -40,9 +41,14 @@ namespace Projeto_Clube_do_livro_2025
                         break;
 
 
+                    case "3":
+                        Console.Clear();
+                        amigos.EditarAmigos();
+                        break;
 
 
                     default:
+
                         Console.WriteLine("saindo do programa");
                         break;
 

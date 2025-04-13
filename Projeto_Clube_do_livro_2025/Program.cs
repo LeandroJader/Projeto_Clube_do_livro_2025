@@ -1,10 +1,13 @@
-﻿namespace Projeto_Clube_do_livro_2025
+﻿using Projeto_Clube_do_livro_2025.ModuloAmigo;
+
+namespace Projeto_Clube_do_livro_2025
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             TelaAmigo CadastrarAmigo = new TelaAmigo();
+
 
             Console.WriteLine("---------------");
             Console.WriteLine("Clube Do Livro ");
@@ -20,7 +23,16 @@
             {
                
                 case "1" : Console.Clear();
-                    CadastrarAmigo.ObterDadosAmigos(); break;
+                    CadastrarAmigo.CadastrarAmigos(); break;
+
+
+
+
+                case "2": Console.Clear();
+
+                    break;
+
+
 
                    
                 default: Console.WriteLine("saindo do programa");

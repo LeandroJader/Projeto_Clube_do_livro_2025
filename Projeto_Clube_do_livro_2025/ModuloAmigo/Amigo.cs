@@ -1,4 +1,4 @@
-﻿namespace Projeto_Clube_do_livro_2025
+﻿namespace Projeto_Clube_do_livro_2025.ModuloAmigo
 {
     public class Amigo
     {

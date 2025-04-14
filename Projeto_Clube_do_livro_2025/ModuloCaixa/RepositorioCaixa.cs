@@ -13,11 +13,11 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
         public int contadorCaixa = 0;
 
 
-        public void CadastrarCaixas(Caixa NovaCaixa)
+        public  Caixa CadastrarCaixas(Caixa NovaCaixa)
         {
             NovaCaixa.Id = GeradorId.GerarIdCaixa();
             caixasCadastradas[contadorCaixa++] = NovaCaixa;
-
+            return NovaCaixa;
 
         }
         public Caixa[] VizualizarCaixas()
@@ -37,11 +37,12 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
                 if (caixasCadastradas[i].Id == IdSelecionado)
                 {
                     return caixasCadastradas[i];
+                
                 }
             }
 
-
             return null;
+            
         }
 
 

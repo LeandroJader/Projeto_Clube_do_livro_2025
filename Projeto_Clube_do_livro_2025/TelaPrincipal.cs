@@ -18,6 +18,7 @@ namespace Projeto_Clube_do_livro_2025
             Console.WriteLine("informe opção que deseja");
             Console.WriteLine("1- menu amigos ");
             Console.WriteLine("2- menu caixas");
+            Console.WriteLine("3- menu revistas");
 
             string opcaoEscolhida = Console.ReadLine();
 

@@ -17,6 +17,41 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
             RevistasCadastradas[contadorRevista++] = NovaRevista;
 
         }
+
+        public Revista [] VizualizarRevistas()
+        {
+            return RevistasCadastradas;
+                
+              
+
+        }
+        public Revista EditarRevista(int IdrevistaEditada , Revista RevistaEditada)
+        {
+            for (int i = 0; i < RevistasCadastradas.Length; i++)
+            
+            {
+                if (IdrevistaEditada == null) continue;
+
+               else if (IdrevistaEditada == RevistasCadastradas[i].Id)
+                {
+                    RevistasCadastradas[i].Titulo = RevistaEditada.Titulo;
+                    RevistasCadastradas[i].NumeroEdicao = RevistaEditada.NumeroEdicao;
+                    RevistasCadastradas[i].AnoPublicacao = RevistaEditada.AnoPublicacao;
+                    RevistasCadastradas[i].StatusEmprestimo = RevistaEditada.StatusEmprestimo;
+                    RevistasCadastradas[i].Caixa = RevistaEditada.Caixa;
+                    break;
+
+                }
+
+            }
+                return RevistaEditada;
+
+
+
+
+        }
+
+
        
     }
 }

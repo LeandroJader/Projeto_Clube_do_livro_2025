@@ -12,10 +12,12 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
     {
         public RepositorioCaixa repositoriocaixas;
         public RepositorioRevista repositoriorevista;
-        public TelaRevista()
+        public TelaRevista(RepositorioRevista repositoriorevista, RepositorioCaixa repositoriocaixa)
         {
-            repositoriocaixas = new RepositorioCaixa();
-            repositoriorevista = new RepositorioRevista();
+
+            this.repositoriorevista = repositoriorevista;
+            this.repositoriocaixas = repositoriocaixa;
+
         }
         public static string MenuRevista()
         {
@@ -26,7 +28,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
             Console.WriteLine("1- para cadastrar revistas");
             Console.WriteLine("2- para vizualizar revistas");
             Console.WriteLine("3- para editar revidstas");
-            Console.WriteLine("4- para excluir revidstas");
+            Console.WriteLine("4- para excluir revistas");
 
             string OpcaoEscolhida = Console.ReadLine();
             return OpcaoEscolhida;
@@ -34,20 +36,55 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
         }
 
 
+        public void VizualizarCaixas()
+        {
+            Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3,-10} ",
+                                "Id", "etiqueta", "cor", "Dias de emprestimo");
 
+            Console.WriteLine();
+
+            Caixa[] caixascadastradas = repositoriocaixas.VizualizarCaixas();
+
+
+            for (int i = 0; i < caixascadastradas.Length; i++)
+            {
+                if (caixascadastradas[i] == null) continue;
+
+                else
+                {
+                    Caixa a = caixascadastradas[i];
+
+                    Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3, -10} | ",
+                                       a.Id, a.Etiqueta, a.Cor, a.DiasDeEmprestimos);
+                    Console.WriteLine();
+
+                }
+            }
+
+            Console.WriteLine("pressione Enter para prosseguir ");
+            Console.ReadLine();
+        }
 
 
         public void CadastarrRevista()
         {
+
+            VizualizarCaixas();
+            
+            Console.WriteLine();
+
             Revista NovaRevista = ObterDadosRevista();
             repositoriorevista.CadastrarRevista(NovaRevista);
 
         }
-
+        
 
 
         public Revista ObterDadosRevista()
         {
+            Console.WriteLine("Informe o id da caixa que essa revista pertence");
+            int iDCaixas = Convert.ToInt32(Console.ReadLine());
+
             Console.WriteLine("informe o Título da revista");
             string Titulo = Console.ReadLine();
 
@@ -60,15 +97,61 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
             Console.WriteLine("informe o status da revista ");
             string statusEmprestimo = Console.ReadLine();
 
-            Console.WriteLine("Informe o id da caixa que essa revista pertence");
-            int iDCaixas = Convert.ToInt32(Console.ReadLine());
-
             Caixa CaixaSelecionada = repositoriocaixas.SelecionarCaixasPorId(iDCaixas);
 
             Revista NovaRevista = new Revista(Titulo, NumeroEdicao, AnoPublicaçao, statusEmprestimo, CaixaSelecionada);
 
+
             return NovaRevista;
         }
 
+        public void vizualizarRevistas()
+        {
+            Console.WriteLine("{0, -10} | {1, -15} | {2, -10}     | {3,-15} |   {4, -12} |        {5, -15}",
+                               "Id",      "Título", "Nº Edição", " Ano.public", "status disp, ",  " caixa");
+
+            Console.WriteLine();
+
+            Revista[] revistascadastradas = repositoriorevista.VizualizarRevistas();
+
+
+            for (int i = 0; i < revistascadastradas.Length; i++)
+            {
+                if (revistascadastradas[i] == null) continue;
+
+                else
+                {
+                    Revista r = revistascadastradas[i];
+
+                    Console.WriteLine("{0, -10} | {1, -15} | {2, -10}     | {3,-15} |   {4, -12} |        {5, -15}",
+                                       r.Id, r.Titulo,r.NumeroEdicao, r.AnoPublicacao, r.StatusEmprestimo, r.Caixa.Etiqueta);
+
+
+                    Console.WriteLine();
+                    break;
+                }
+                
+            }
+            Console.WriteLine("pressione Enter para continuar");
+            Console.ReadLine();
+        }
+        public void EditarRevista()
+        {
+          
+            vizualizarRevistas();
+            Console.WriteLine();
+
+
+            Console.WriteLine("informe o Id da revista que deseja editar");
+            int IdrevistaEditada = Convert.ToInt32(Console.ReadLine());
+
+            Revista RevistaEditada = ObterDadosRevista();   
+
+            
+
+            RevistaEditada = repositoriorevista.EditarRevista(IdrevistaEditada ,RevistaEditada);
+
+
+        }
     }
 }

@@ -8,9 +8,17 @@ internal class Program
 {
     static void Main(string[] args)
     {
+
+        RepositorioAmigo repositorioamigo = new RepositorioAmigo();
+        RepositorioCaixa repositoriocaixa = new RepositorioCaixa();
+        RepositorioRevista repositorioRevista = new RepositorioRevista();    
+
+
+
+
         TelaAmigo amigos = new TelaAmigo();
-        TelaCaixas caixas = new TelaCaixas();
-        TelaRevista Revistas = new TelaRevista();
+        TelaCaixas caixas = new TelaCaixas(repositoriocaixa);
+        TelaRevista Revistas = new TelaRevista(repositorioRevista,repositoriocaixa);
 
 
         Console.WriteLine("alguma coisa");
@@ -99,6 +107,7 @@ internal class Program
 
             else if (opcao == "3")
             {
+                Console.Clear();
                 string OpcaoEscolhida = TelaRevista.MenuRevista();
 
                 switch (OpcaoEscolhida)
@@ -108,16 +117,16 @@ internal class Program
                         Revistas.CadastarrRevista();
                         break;
 
-                        //    case "2":
-                        //Console.Clear();
-                        //Revistas.vizualizarRevistas();
-                        //break;
+                            case "2":
+                        Console.Clear();
+                        Revistas.vizualizarRevistas();
+                        break;
 
 
-                        //    case "3":
-                        //Console.Clear();
-                        //Revistas.EditarRevistas();
-                        //break;
+                        case "3":
+                        Console.Clear();
+                        Revistas.EditarRevista();
+                        break;
 
 
                         //    case "1":

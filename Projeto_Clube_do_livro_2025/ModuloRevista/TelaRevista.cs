@@ -27,7 +27,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
 
             Console.WriteLine("1- para cadastrar revistas");
             Console.WriteLine("2- para vizualizar revistas");
-            Console.WriteLine("3- para editar revidstas");
+            Console.WriteLine("3- para editar revistas");
             Console.WriteLine("4- para excluir revistas");
 
             string OpcaoEscolhida = Console.ReadLine();
@@ -61,7 +61,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
                 }
             }
 
-            Console.WriteLine("pressione Enter para prosseguir ");
+            Console.WriteLine("pressione Enter para Continuar ");
             Console.ReadLine();
         }
 
@@ -107,7 +107,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
 
         public void vizualizarRevistas()
         {
-            Console.WriteLine("{0, -10} | {1, -15} | {2, -10}     | {3,-15} |   {4, -12} |        {5, -15}",
+            Console.WriteLine("{0, -10} | {1, -15} | {2, -10}     | {3,-15} |   {4, -15} |        {5, -15}",
                                "Id",      "Título", "Nº Edição", " Ano.public", "status disp, ",  " caixa");
 
             Console.WriteLine();
@@ -123,8 +123,8 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
                 {
                     Revista r = revistascadastradas[i];
 
-                    Console.WriteLine("{0, -10} | {1, -15} | {2, -10}     | {3,-15} |   {4, -12} |        {5, -15}",
-                                       r.Id, r.Titulo,r.NumeroEdicao, r.AnoPublicacao, r.StatusEmprestimo, r.Caixa.Etiqueta);
+                    Console.WriteLine("{0, -10} | {1, -15} | {2, -10}     | {3,-15} |   {4, -15} |        {5, -15}",
+                                       r.Id, r.Titulo,r.NumeroEdicao, r.AnoPublicacao.ToShortDateString(), r.StatusEmprestimo, r.Caixa.Etiqueta);
 
 
                     Console.WriteLine();
@@ -150,6 +150,18 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
             
 
             RevistaEditada = repositoriorevista.EditarRevista(IdrevistaEditada ,RevistaEditada);
+
+
+        }
+
+        public void ExcluirRevistas()
+        {
+            vizualizarRevistas();
+
+            Console.WriteLine("Informe o Id da revista que deseja excluir ");
+            int IdEscolhido = Convert.ToInt32(Console.ReadLine());
+
+            repositoriorevista.ExcluirRevista(IdEscolhido);
 
 
         }

@@ -129,10 +129,10 @@ internal class Program
                         break;
 
 
-                        //    case "1":
-                        //Console.Clear();
-                        //Revistas.ExcluirRevistas();
-                        //break; 
+                           case "4":
+                        Console.Clear();
+                        Revistas.ExcluirRevistas();
+                        break; 
                 }
 
             }

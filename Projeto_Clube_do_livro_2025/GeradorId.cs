@@ -9,7 +9,7 @@ namespace Projeto_Clube_do_livro_2025
 {
     class GeradorId
     {
-
+        public static int IdCaixa;
         public static int Idamigo = 0;
  
         public static int GerarIdAmigo()
@@ -18,8 +18,13 @@ namespace Projeto_Clube_do_livro_2025
             Idamigo++;
 
             return Idamigo;
-      
-         
+             
+        }
+        public static int GerarIdCaixa()
+        {
+            IdCaixa++;
+            return IdCaixa;
+
         }
 
 

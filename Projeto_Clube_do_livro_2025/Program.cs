@@ -1,5 +1,6 @@
 ﻿using Projeto_Clube_do_livro_2025.ModuloAmigo;
 using Projeto_Clube_do_livro_2025.ModuloCaixa;
+using Projeto_Clube_do_livro_2025.ModuloRevista;
 
 namespace Projeto_Clube_do_livro_2025;
 
@@ -9,6 +10,7 @@ internal class Program
     {
         TelaAmigo amigos = new TelaAmigo();
         TelaCaixas caixas = new TelaCaixas();
+        TelaRevista Revistas = new TelaRevista();
 
 
         Console.WriteLine("alguma coisa");
@@ -60,7 +62,7 @@ internal class Program
             else if (opcao == "2")
             {
 
-                string OpcaoEscolhida = TelaCaixas.MenuTelaCixas();
+                string OpcaoEscolhida = TelaCaixas.MenuTelaCaixas();
 
                 Console.Clear();
                 switch (OpcaoEscolhida)
@@ -95,6 +97,36 @@ internal class Program
                 }
             }
 
+            else if (opcao == "3")
+            {
+                string OpcaoEscolhida = TelaRevista.MenuRevista();
+
+                switch (OpcaoEscolhida)
+                {
+                    case "1":
+                        Console.Clear();
+                        Revistas.CadastarrRevista();
+                        break;
+
+                        //    case "2":
+                        //Console.Clear();
+                        //Revistas.vizualizarRevistas();
+                        //break;
+
+
+                        //    case "3":
+                        //Console.Clear();
+                        //Revistas.EditarRevistas();
+                        //break;
+
+
+                        //    case "1":
+                        //Console.Clear();
+                        //Revistas.ExcluirRevistas();
+                        //break; 
+                }
+
+            }
         }
     }
 }

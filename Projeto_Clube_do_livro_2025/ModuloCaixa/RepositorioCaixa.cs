@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Projeto_Clube_do_livro_2025.ModuloCaixa
 {
-    class RepositorioCaixa
+   public class RepositorioCaixa
     {
         public Caixa[] caixasCadastradas = new Caixa[100];
         public int contadorCaixa = 0;
@@ -26,6 +26,25 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
             return caixasCadastradas;
 
         }
+
+
+        public Caixa SelecionarCaixasPorId(int IdSelecionado)
+        {
+
+
+            for (int i=0; i<caixasCadastradas.Length; i++)
+            {
+                if (caixasCadastradas[i].Id == IdSelecionado)
+                {
+                    return caixasCadastradas[i];
+                }
+            }
+
+
+            return null;
+        }
+
+
         public Caixa EditarCaixas(int Idcaixa, Caixa caixaEditada)
         {
             for (int i = 0; i < caixasCadastradas.Length; i++)

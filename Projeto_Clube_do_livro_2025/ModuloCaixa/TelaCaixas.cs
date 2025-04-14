@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projeto_Clube_do_livro_2025.ModuloRevista;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,17 +10,18 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
    public class TelaCaixas
     {
          RepositorioCaixa repositoriocaixas;
-        
+   
+
+
         public TelaCaixas()
             {
             repositoriocaixas = new RepositorioCaixa();
-
             }
             
         
         
 
-      public static string MenuTelaCixas()
+      public static string MenuTelaCaixas()
         {
             Console.Clear();
             Console.WriteLine("-------------------------");
@@ -40,6 +42,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
             Caixa Novacaixa = ObterDadosCaixas();
 
             repositoriocaixas.CadastrarCaixas(Novacaixa);
+            
 
         }
 
@@ -62,8 +65,8 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
 
         public void VizualizarCaixas()
         {
-            Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3,-10}",
-                                "Id", "etiqueta", "cor", "Dias de emprestimo" );
+            Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3,-10} | {4, -10}",
+                                "Id", "etiqueta", "cor", "Dias de emprestimo", "qtd revistas");
 
             Console.WriteLine();
 
@@ -78,7 +81,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
                 {
                     Caixa a = caixascadastradas[i];
 
-                    Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3, -10}",
+                    Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3, -10} | ",
                                        a.Id, a.Etiqueta, a.Cor, a.DiasDeEmprestimos);
                     Console.WriteLine();
                     break;

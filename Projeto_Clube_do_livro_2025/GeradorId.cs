@@ -1,4 +1,5 @@
 ﻿using Projeto_Clube_do_livro_2025.ModuloAmigo;
+using Projeto_Clube_do_livro_2025.ModuloRevista;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace Projeto_Clube_do_livro_2025
 {
     class GeradorId
     {
-        public static int IdCaixa;
+        public static int IdCaixa = 0;
         public static int Idamigo = 0;
- 
+        public static int IdRevista = 0;
         public static int GerarIdAmigo()
         {
 
@@ -27,6 +28,11 @@ namespace Projeto_Clube_do_livro_2025
 
         }
 
+        public static int GerarIdRevista()
+        {
+            IdRevista++;
 
+            return IdRevista;
+        }
     }
 }

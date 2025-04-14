@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projeto_Clube_do_livro_2025.ModuloRevista;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -13,6 +14,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
         public string Etiqueta;
         public string Cor;
         public int DiasDeEmprestimos;
+        public Revista[] Revistas; 
 
         public Caixa(string etiqueta, string cor, int diasEmprestados)
         {
@@ -20,8 +22,12 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
             Etiqueta = etiqueta;
             Cor = cor;
             DiasDeEmprestimos = diasEmprestados;
+            Revistas = new Revista[100];
         }
+     
+    }
+ 
 
 
     }
-}
+

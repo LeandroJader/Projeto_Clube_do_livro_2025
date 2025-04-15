@@ -72,13 +72,14 @@ namespace Projeto_Clube_do_livro_2025.ModuloAmigo
         public bool ExcluirAmigos(int Idescolhido)
         {
 
+     
             for (int i = 0; i < AmigosCadastrados.Length; i++)
             {
                 if (AmigosCadastrados[i].Id == null) continue;
 
                 else if (AmigosCadastrados[i].Id == Idescolhido)
                 {
-                    Console.WriteLine("amigo excluido com sucesso");
+                    Notificador.ExibirMensagem("Amigo Excluido com sucesso", ConsoleColor.Green);
                     AmigosCadastrados[i] = null;
                     break;
                 }

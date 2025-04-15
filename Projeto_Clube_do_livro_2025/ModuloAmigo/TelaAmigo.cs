@@ -11,7 +11,7 @@ public class TelaAmigo
 
     public RepositorioEmprestimo Repositorioemprestimo;
     public RepositorioAmigo Repositorioamigo;
-   
+
 
 
     public TelaAmigo(RepositorioAmigo repositorioamigo, RepositorioEmprestimo repositorioEmprestimo)
@@ -157,22 +157,31 @@ public class TelaAmigo
         Console.WriteLine("informe o Id do amigo que deseja excluir ");
         int IdEscolhido = Convert.ToInt32(Console.ReadLine());
 
-        bool consegiuExcluir = Repositorioamigo.ExcluirAmigos(IdEscolhido);
+        Emprestimo[] emprestimos = Repositorioemprestimo.EmprestimosCadastrados;
 
+        if (emprestimos.Length > 0)
+        {
+            Notificador.ExibirMensagem("este amigo nao pode ser excluido pois possui emprestimo pendente", ConsoleColor.Red);
+            return;
+        }
+        else
+        {
+            bool consegiuExcluir = Repositorioamigo.ExcluirAmigos(IdEscolhido);
+        }
 
 
     }
 
     public void VizualizarEmprestimos()
     {
-        
+
 
         Console.WriteLine("Informe o Id do Amigo que deseja vizualizar os emprestimos");
         int IdEscolhido = Convert.ToInt32(Console.ReadLine());
 
         Amigo AmigoSelecionado = Repositorioamigo.SelecionarAmigoPorId(IdEscolhido);
 
-        Console.WriteLine("{0, -10} | {1, -10} | {2, -20} | {3,- 15} ",
+        Console.WriteLine("{0, -10} | {1, -10} | {2, -20} | {3, -15} ",
                           "Nome.amigo", "revista ", "data", "Dias de emprestimo");
         Console.WriteLine();
 
@@ -188,7 +197,7 @@ public class TelaAmigo
             {
                 Emprestimo e = emprestimos[i];
 
-                Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3, -15} | ",
+                Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3, -15} ",
                                    e.Amigo.Nome, e.Revista.Titulo, e.Data, e.Situacao);
                 Console.WriteLine();
 

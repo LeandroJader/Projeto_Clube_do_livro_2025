@@ -40,13 +40,15 @@ public class TelaAmigo
     {
         Console.WriteLine("informe o nome completo do amigo");
         string nome = Console.ReadLine();
+        Console.WriteLine();
 
         Console.WriteLine("informe o nome completo do responsável ");
         string nomeCompletoResponsavel = Console.ReadLine();
 
+        Console.WriteLine();
         Console.WriteLine("informe o telefone ");
         string telefone = Console.ReadLine();
-
+        Console.WriteLine();
 
 
         Amigo NovoAmigo = new Amigo(nome, nomeCompletoResponsavel, telefone);
@@ -71,7 +73,7 @@ public class TelaAmigo
 
             }
 
-            else if (erros.Length <= 0)
+            else if (erros.Length < 0)
             {
 
                 Repositorioamigo.CadastrarAmigo(NovoAmigo);

@@ -141,6 +141,8 @@ namespace Projeto_Clube_do_livro_2025.ModuloEmprestimo
         }
         public void VizualizarEmprestimos()
         {
+            repositorioEmprestimo = new RepositorioEmprestimo();
+
             Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3,-15} ",
                               "amigo", "revista", "data.abertura", "situação");
 

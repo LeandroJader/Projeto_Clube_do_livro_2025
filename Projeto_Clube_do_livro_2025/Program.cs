@@ -1,4 +1,5 @@
-﻿using Projeto_Clube_do_livro_2025.ModuloAmigo;
+﻿using Projeto_Clube_do_livro_2025.compartilhado;
+using Projeto_Clube_do_livro_2025.ModuloAmigo;
 using Projeto_Clube_do_livro_2025.ModuloCaixa;
 using Projeto_Clube_do_livro_2025.ModuloEmprestimo;
 using Projeto_Clube_do_livro_2025.ModuloRevista;
@@ -18,7 +19,7 @@ internal class Program
 
 
         TelaEmprestimo emprestimo = new TelaEmprestimo(repositorioamigo, repositorioRevista, repositoriocaixa,repositorioEmprestimo);
-        TelaAmigo amigos = new TelaAmigo(repositorioamigo);
+        TelaAmigo amigos = new TelaAmigo(repositorioamigo, repositorioEmprestimo);
         TelaCaixas caixas = new TelaCaixas(repositoriocaixa);
         TelaRevista Revistas = new TelaRevista(repositorioRevista,repositoriocaixa);
         
@@ -67,6 +68,12 @@ internal class Program
                         Console.Clear();
                         amigos.ExcluirAmigos();
                         break;
+
+
+                    case "5":
+                        Console.Clear();
+                        amigos.VizualizarEmprestimos();
+                        break;
                 }
             }
 
@@ -100,6 +107,7 @@ internal class Program
                         caixas.excluirCaixas();
                         break;
 
+                  
 
                     default:
 
@@ -136,6 +144,8 @@ internal class Program
                         Console.Clear();
                         Revistas.ExcluirRevistas();
                         break; 
+
+
                 }
               
 

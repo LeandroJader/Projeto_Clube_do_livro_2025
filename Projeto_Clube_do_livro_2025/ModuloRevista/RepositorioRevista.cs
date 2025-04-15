@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projeto_Clube_do_livro_2025.ModuloCaixa;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -24,6 +25,22 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
             return RevistasCadastradas;
                 
               
+
+        }
+        public Revista SelecionarRevistaPorId(int IdSelecionado)
+        {
+
+
+            for (int i = 0; i < RevistasCadastradas.Length; i++)
+            {
+                if (RevistasCadastradas[i].Id == IdSelecionado)
+                {
+                    return RevistasCadastradas[i];
+
+                }
+            }
+
+            return null;
 
         }
         public Revista EditarRevista(int IdrevistaEditada , Revista RevistaEditada)

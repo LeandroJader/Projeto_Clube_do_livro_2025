@@ -7,9 +7,9 @@ public class TelaAmigo
 
 
     public RepositorioAmigo repositorioamigo;
-    public TelaAmigo()
+    public TelaAmigo(RepositorioAmigo repositorioamigo)
     {
-        repositorioamigo = new RepositorioAmigo();
+        this.repositorioamigo = repositorioamigo;
 
     }
 
@@ -51,7 +51,7 @@ public class TelaAmigo
         repositorioamigo.CadastrarAmigo(NovoAmigo);
     }
 
-    internal void VizualizarAmigos()
+    public void VizualizarAmigos()
     {
 
         Console.WriteLine("vizualizando amigos ");
@@ -79,8 +79,10 @@ public class TelaAmigo
 
             }
         }
-       
+        Console.WriteLine("Aperte ENTER para continuar");
+        Console.ReadLine();
     }
+  
 
     public void EditarAmigos()
     {

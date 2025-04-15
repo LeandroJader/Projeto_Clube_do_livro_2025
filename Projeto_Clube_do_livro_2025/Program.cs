@@ -1,6 +1,7 @@
 ﻿using Projeto_Clube_do_livro_2025.ModuloAmigo;
 using Projeto_Clube_do_livro_2025.ModuloCaixa;
 using Projeto_Clube_do_livro_2025.ModuloRevista;
+using System.ComponentModel.Design;
 
 namespace Projeto_Clube_do_livro_2025;
 
@@ -8,17 +9,18 @@ internal class Program
 {
     static void Main(string[] args)
     {
-
+        RepositorioEmprestimo repositorioEmprestimo = new RepositorioEmprestimo();
         RepositorioAmigo repositorioamigo = new RepositorioAmigo();
         RepositorioCaixa repositoriocaixa = new RepositorioCaixa();
-        RepositorioRevista repositorioRevista = new RepositorioRevista();    
+        RepositorioRevista repositorioRevista = new RepositorioRevista();
+        RepositorioEmprestimo repositorioEmprestimo1 = new RepositorioEmprestimo();
 
 
-
-
-        TelaAmigo amigos = new TelaAmigo();
+        TelaEmprestimo emprestimo = new TelaEmprestimo(repositorioamigo, repositorioRevista, repositoriocaixa,repositorioEmprestimo);
+        TelaAmigo amigos = new TelaAmigo(repositorioamigo);
         TelaCaixas caixas = new TelaCaixas(repositoriocaixa);
         TelaRevista Revistas = new TelaRevista(repositorioRevista,repositoriocaixa);
+        
 
 
         Console.WriteLine("alguma coisa");
@@ -133,6 +135,29 @@ internal class Program
                         Console.Clear();
                         Revistas.ExcluirRevistas();
                         break; 
+                }
+              
+
+            }
+            else if (opcao == "4")
+            {
+                string opcaoEscolhida = TelaEmprestimo.MenuEmprestimo();
+
+
+
+                switch (opcaoEscolhida)
+                {
+
+                    case "1":Console.Clear();
+                        emprestimo.CadastrarEmprestimo();
+                        break;
+
+
+                    case "2":
+                        Console.Clear();
+                        emprestimo.VizualizarEmprestimos();
+                        break;
+
                 }
 
             }

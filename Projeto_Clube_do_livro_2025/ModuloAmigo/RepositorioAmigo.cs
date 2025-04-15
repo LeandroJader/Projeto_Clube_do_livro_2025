@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projeto_Clube_do_livro_2025.ModuloCaixa;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,27 @@ namespace Projeto_Clube_do_livro_2025.ModuloAmigo
         {
             return AmigosCadastrados;
         }
+        public Amigo  SelecionarAmigoPorId(int IdSelecionado)
+        {
 
-       
-       public bool EditarAmigos(int idAmigoEscolhido, Amigo amigoEditado)
+
+            for (int i = 0; i < AmigosCadastrados.Length; i++)
+            {
+                if (AmigosCadastrados[i].Id == null) continue;
+
+                else if (AmigosCadastrados[i].Id == IdSelecionado)
+                {
+                    return AmigosCadastrados[i];
+
+                }
+            }
+
+            return null;
+
+        }
+
+
+        public bool EditarAmigos(int idAmigoEscolhido, Amigo amigoEditado)
         {
             for (int i = 0; i <AmigosCadastrados.Length ;  i++)
             {

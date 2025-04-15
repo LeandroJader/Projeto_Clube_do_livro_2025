@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Projeto_Clube_do_livro_2025.ModuloEmprestimo
 {
-   public class RepositorioEmprestimo
+    public class RepositorioEmprestimo
     {
         public Emprestimo[] EmprestimosCadastrados = new Emprestimo[100];
         public int contadorEmprestimo = 0;
@@ -18,17 +18,17 @@ namespace Projeto_Clube_do_livro_2025.ModuloEmprestimo
 
             NovoEmprestimo.Id = GeradorId.GerarIdEmprestimo();
             EmprestimosCadastrados[contadorEmprestimo++] = NovoEmprestimo;
-     
+
 
         }
-        public Emprestimo [] VizualizarEmprestimo()
+        public Emprestimo[] VizualizarEmprestimo()
         {
 
             return EmprestimosCadastrados;
 
         }
 
-    
+
 
 
 

@@ -91,9 +91,43 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
 
 
         }
+        public string Validarrevista(string titulo, int numeroEdicao, DateTime anopublicação, Caixa caixaSelecionada)
+        {
+            Console.Clear();
+            string erros = "";
 
 
 
-       
+            if (string.IsNullOrWhiteSpace(titulo) || titulo.Length > 50)
+                erros += "Campo Título Não pode ser nulo ! e Não deve conter mais de 100 caracteres \n";
+
+            for (int i = 0; i < RevistasCadastradas.Length; i++)
+            {
+                if (RevistasCadastradas.Length != null && titulo == RevistasCadastradas[i].Titulo)
+                {
+                    erros += "Não pode existir Títulos Duplicados escolha outro \n";
+                    break;
+                }
+
+            }
+            if (numeroEdicao == null)
+            {
+                erros += "Número Edição não pode ser nulo";
+            }
+
+            if (anopublicação > DateTime.Now)
+            {
+                erros += "O ano nao pode ser futuro";
+            }
+            if (caixaSelecionada == null)
+            {
+                erros += "o campo caixa é obrigatorio";
+            }
+
+            return erros;
+        }
+
+
+
     }
 }

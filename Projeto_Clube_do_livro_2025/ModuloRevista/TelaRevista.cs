@@ -1,4 +1,5 @@
-﻿using Projeto_Clube_do_livro_2025.ModuloCaixa;
+﻿using Projeto_Clube_do_livro_2025.compartilhado;
+using Projeto_Clube_do_livro_2025.ModuloCaixa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,21 +70,61 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
         public void CadastarrRevista()
         {
 
-            VizualizarCaixas();
-            
-            Console.WriteLine();
+            string erros = "";
+            bool consegiuCadastrar = true;
+            while (consegiuCadastrar == true)
+            {
 
-            Revista NovaRevista = ObterDadosRevista();
-            repositoriorevista.CadastrarRevista(NovaRevista);
 
-        }
+
+                Revista NovaRevista = ObterDadosRevista();
+                erros = repositoriorevista.Validarrevista(NovaRevista.Titulo, NovaRevista.NumeroEdicao, NovaRevista.AnoPublicacao, NovaRevista.Caixa);
+
+
+                if (erros.Length > 0)
+                {
+                    Notificador.ExibirMensagem(erros, ConsoleColor.Red);
+                    continue;
+
+                }
+
+                else
+                {
+
+                    repositoriorevista.CadastrarRevista(NovaRevista);
+                    Notificador.ExibirMensagem("Cadastro concluido ", ConsoleColor.Green);
+                    Console.WriteLine("------------------------------");
+                    Console.WriteLine("pressione ENTER para continuar");
+                    consegiuCadastrar = false;
+                }
+
+            }
+
+        }          
+
         
 
 
         public Revista ObterDadosRevista()
         {
-            Console.WriteLine("Informe o id da caixa que essa revista pertence");
-            int iDCaixas = Convert.ToInt32(Console.ReadLine());
+            int IdCaixas;
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Informe o id da caixa que essa revista pertence:");
+                string entrada = Console.ReadLine();
+
+                if (int.TryParse(entrada, out IdCaixas))
+                {
+                    break; 
+                }
+                else
+                {
+                    Console.WriteLine("Informe um número interio.");
+                }
+            }
+
+
 
             Console.WriteLine("informe o Título da revista");
             string Titulo = Console.ReadLine();
@@ -94,13 +135,39 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
             Console.WriteLine("Informe o ano de publicação da revista (dd/mm/yyyy) ");
             DateTime AnoPublicaçao = Convert.ToDateTime(Console.ReadLine());
 
-            Console.WriteLine("informe o status da revista ");
-            string statusEmprestimo = Console.ReadLine();
 
-            Caixa CaixaSelecionada = repositoriocaixas.SelecionarCaixasPorId(iDCaixas);
+            Console.WriteLine("-----------------------------");
+            Console.WriteLine("informe o status da revista  ");
+            Console.WriteLine("-----------------------------");
+            Console.WriteLine("1-  disponivel");
+            Console.WriteLine("2-  emprestada");
+            Console.WriteLine("3-  reservada");
+            Console.WriteLine();
 
-            Revista NovaRevista = new Revista(Titulo, NumeroEdicao, AnoPublicaçao, statusEmprestimo, CaixaSelecionada);
+            string statusResvista = Console.ReadLine();
 
+            if (statusResvista == "1")
+            {
+                statusResvista = "disponivel";
+            }
+            else if (statusResvista == "2")
+            {
+                statusResvista = "emprestada";
+            }
+            else
+            {
+                statusResvista = "reservada";
+            }
+
+
+
+
+                Caixa CaixaSelecionada = repositoriocaixas.SelecionarCaixasPorId(IdCaixas);
+
+            Revista NovaRevista = new Revista(Titulo, NumeroEdicao, AnoPublicaçao, statusResvista, CaixaSelecionada);
+            Console.WriteLine();
+            Console.WriteLine("pressione Enter para continuar");
+            Console.ReadLine();
 
             return NovaRevista;
         }

@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Projeto_Clube_do_livro_2025.ModuloCaixa
 {
-   public class RepositorioCaixa
+    public class RepositorioCaixa
     {
         public Caixa[] caixasCadastradas = new Caixa[100];
         public int contadorCaixa = 0;
 
 
-        public  Caixa CadastrarCaixas(Caixa NovaCaixa)
+        public Caixa CadastrarCaixas(Caixa NovaCaixa)
         {
             NovaCaixa.Id = GeradorId.GerarIdCaixa();
             caixasCadastradas[contadorCaixa++] = NovaCaixa;
@@ -33,17 +33,17 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
         {
 
 
-            for (int i=0; i<caixasCadastradas.Length; i++)
+            for (int i = 0; i < caixasCadastradas.Length; i++)
             {
                 if (caixasCadastradas[i].Id == IdSelecionado)
                 {
                     return caixasCadastradas[i];
-                
+
                 }
             }
 
             return null;
-            
+
         }
 
 
@@ -58,14 +58,14 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
                     caixasCadastradas[i].Etiqueta = caixaEditada.Etiqueta;
                     caixasCadastradas[i].Cor = caixaEditada.Cor;
                     caixasCadastradas[i].DiasDeEmprestimos = caixaEditada.DiasDeEmprestimos;
-                   
+
 
                     break;
                 }
             }
-                return caixaEditada;
+            return caixaEditada;
 
-            
+
 
         }
         public void ExcluirCaixas(int IdCaixa)
@@ -89,9 +89,9 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
             Console.Clear();
             string erros = "";
 
-           
 
-            if (string.IsNullOrWhiteSpace(etiqueta) ||etiqueta.Length > 50)
+
+            if (string.IsNullOrWhiteSpace(etiqueta) || etiqueta.Length > 50)
                 erros += "Campo Etiqueta Não pode ser nulo ! e Não deve conter mais de 50 caracteres \n";
 
             for (int i = 0; i < caixasCadastradas.Length; i++)
@@ -117,5 +117,3 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
 
 
 }
-    
-

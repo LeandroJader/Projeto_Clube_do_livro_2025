@@ -38,7 +38,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloEmprestimo
 
         }
 
-       public void VizualizarAmigos()
+        public void VizualizarAmigos()
         {
 
             Console.WriteLine("vizualizando amigos ");
@@ -134,7 +134,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloEmprestimo
             Amigo AmigoSelecionado = repositorioAmigo.SelecionarAmigoPorId(IdEscolhidoAmigo);
             Revista RevistaSelecionada = repositorioRevista.SelecionarRevistaPorId(IdEscolhidoRevista);
 
-            Emprestimo NovoEmprestimo = new Emprestimo(AmigoSelecionado, RevistaSelecionada, DataInicialEmprestimo,SituacaoEmprestimo);
+            Emprestimo NovoEmprestimo = new Emprestimo(AmigoSelecionado, RevistaSelecionada, DataInicialEmprestimo, SituacaoEmprestimo);
 
             return NovoEmprestimo;
 
@@ -151,7 +151,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloEmprestimo
             Emprestimo[] emprestimosCadastrados = repositorioEmprestimo.VizualizarEmprestimo();
 
 
-            for (int i = 0; i < emprestimosCadastrados.Length ; i++)
+            for (int i = 0; i < emprestimosCadastrados.Length; i++)
             {
                 if (emprestimosCadastrados[i] == null) continue;
 
@@ -176,4 +176,3 @@ namespace Projeto_Clube_do_livro_2025.ModuloEmprestimo
 
 
 }
-

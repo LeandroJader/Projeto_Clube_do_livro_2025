@@ -98,6 +98,7 @@ public class TelaAmigo
                              "Id", "nome", "nome responsavel", "telefone"
                   );
         Console.WriteLine();
+        Console.WriteLine();
 
         Amigo[] amigosCadastrados = Repositorioamigo.SelecionarAmigos();
 
@@ -163,19 +164,24 @@ public class TelaAmigo
 
         Emprestimo[] emprestimos = Repositorioemprestimo.EmprestimosCadastrados;
 
-        if (emprestimos.Length > 0)
+        for (int i = 0; i < emprestimos.Length; i++)
         {
-            Notificador.ExibirMensagem("este amigo nao pode ser excluido pois possui emprestimo pendente", ConsoleColor.Red);
-            return;
-        }
-        else
-        {
-            bool consegiuExcluir = Repositorioamigo.ExcluirAmigos(IdEscolhido);
-        }
 
+            if (emprestimos[i] == null)
 
+            {
+                bool consegiuExcluir = Repositorioamigo.ExcluirAmigos(IdEscolhido);
+                Console.WriteLine("amigo excluido com sucesso");
+            }
+
+            else
+            {
+                Notificador.ExibirMensagem("este amigo nao pode ser excluido pois possui emprestimo pendente", ConsoleColor.Red);
+                return;
+            }
+
+        }
     }
-
     public void VizualizarEmprestimos()
     {
 

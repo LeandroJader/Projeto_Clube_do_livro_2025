@@ -49,6 +49,8 @@ namespace Projeto_Clube_do_livro_2025.ModuloAmigo
 
         public bool EditarAmigos(int idAmigoEscolhido, Amigo amigoEditado)
         {
+
+
             for (int i = 0; i < AmigosCadastrados.Length; i++)
             {
                 if (AmigosCadastrados[i].Id == null) continue;
@@ -76,7 +78,8 @@ namespace Projeto_Clube_do_livro_2025.ModuloAmigo
      
             for (int i = 0; i < AmigosCadastrados.Length; i++)
             {
-                if (AmigosCadastrados[i].Id == null) continue;
+
+                if (AmigosCadastrados[i] == null) continue;
 
                 else if (AmigosCadastrados[i].Id == Idescolhido)
                 {

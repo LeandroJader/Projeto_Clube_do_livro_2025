@@ -59,12 +59,14 @@ public class TelaAmigo
 
     public void CadastrarAmigos()
     {
-        while (true)
+            bool consegiuEditar = true;
+        while (consegiuEditar == true)
         {
             Console.Clear();
             Amigo NovoAmigo = ObterDadosAmigos();
             string erros = Repositorioamigo.ValidarAmigos(NovoAmigo.Nome, NovoAmigo.NomeResponsavel, NovoAmigo.Telefone);
-
+            Console.WriteLine("pressione ENTER para continuar");
+            Console.ReadLine();
 
             if (erros.Length > 0)
             {
@@ -73,14 +75,14 @@ public class TelaAmigo
 
             }
 
-            else if (erros.Length < 0)
+            else
             {
 
                 Repositorioamigo.CadastrarAmigo(NovoAmigo);
                 Notificador.ExibirMensagem("Cadastro concluido ", ConsoleColor.Green);
                 Console.WriteLine("------------------------------");
                 Console.WriteLine("pressione ENTER para continuar");
-                return;
+                consegiuEditar = false;
             }
         }
     }

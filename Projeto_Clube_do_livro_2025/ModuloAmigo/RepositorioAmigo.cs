@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace Projeto_Clube_do_livro_2025.ModuloAmigo
@@ -126,10 +127,15 @@ namespace Projeto_Clube_do_livro_2025.ModuloAmigo
             if (string.IsNullOrWhiteSpace(Telefone) || Telefone.Length < 10 || Telefone.Length > 13)
                 erros += "Campo telefone Não pode ser nulo ! E deve ser no formato do Exemplo... Ex: 00 123456789\n";
 
+
+
+
+
             return erros;
+
         }
 
-
+      
     }
 }
 

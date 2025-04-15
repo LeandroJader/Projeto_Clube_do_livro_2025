@@ -70,7 +70,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
         }
         public void ExcluirCaixas(int IdCaixa)
         {
-            for (int i =0; i<caixasCadastradas.Length; i++)
+            for (int i = 0; i < caixasCadastradas.Length; i++)
             {
                 if (caixasCadastradas[i].Id == null) continue;
 
@@ -82,9 +82,40 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
                     break;
                 }
             }
-            
-
-
         }
+
+        public string ValidarACaixa(string etiqueta, string raridade)
+        {
+            Console.Clear();
+            string erros = "";
+
+           
+
+            if (string.IsNullOrWhiteSpace(etiqueta) ||etiqueta.Length > 50)
+                erros += "Campo Etiqueta Não pode ser nulo ! e Não deve conter mais de 50 caracteres \n";
+
+            for (int i = 0; i < caixasCadastradas.Length; i++)
+            {
+                if (caixasCadastradas[i] != null && etiqueta == caixasCadastradas[i].Etiqueta)
+                {
+                    erros += "Não pode existir Etiquetas Duplicadas escolha outra \n";
+                    break;
+                }
+
+            }
+            if (string.IsNullOrWhiteSpace(raridade))
+            {
+                erros += "Raridade Não pode ser nula";
+            }
+
+            return erros;
+        }
+
+
     }
+
+
+
 }
+    
+

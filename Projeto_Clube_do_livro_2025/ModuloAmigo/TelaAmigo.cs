@@ -1,5 +1,7 @@
 ﻿
 
+using Projeto_Clube_do_livro_2025.compartilhado;
+
 namespace Projeto_Clube_do_livro_2025.ModuloAmigo;
 
 public class TelaAmigo
@@ -7,6 +9,7 @@ public class TelaAmigo
 
 
     public RepositorioAmigo repositorioamigo;
+
     public TelaAmigo(RepositorioAmigo repositorioamigo)
     {
         this.repositorioamigo = repositorioamigo;
@@ -38,6 +41,8 @@ public class TelaAmigo
         Console.WriteLine("informe o telefone ");
         string telefone = Console.ReadLine();
 
+
+
         Amigo NovoAmigo = new Amigo(nome, nomeCompletoResponsavel, telefone);
 
         return NovoAmigo;
@@ -46,10 +51,32 @@ public class TelaAmigo
 
     public void CadastrarAmigos()
     {
+        while (true)
+        {
+            Console.Clear();
+            Amigo NovoAmigo = ObterDadosAmigos();
+            string erros = NovoAmigo.ValidarAmigo();
 
-        Amigo NovoAmigo = ObterDadosAmigos();
-        repositorioamigo.CadastrarAmigo(NovoAmigo);
+
+            if (erros.Length > 0)
+            {
+                Notificador.ExibirMensagem(erros, ConsoleColor.Red);
+                continue;
+
+            }
+
+            else if (erros.Length <= 0)
+            {
+                
+                repositorioamigo.CadastrarAmigo(NovoAmigo);
+                Notificador.ExibirMensagem("Cadastro concluido ", ConsoleColor.Green);
+                Console.WriteLine("------------------------------");
+                Console.WriteLine("pressione ENTER para continuar");
+                return;
+            }
+        }
     }
+
 
     public void VizualizarAmigos()
     {
@@ -82,19 +109,19 @@ public class TelaAmigo
         Console.WriteLine("Aperte ENTER para continuar");
         Console.ReadLine();
     }
-  
+
 
     public void EditarAmigos()
     {
         VizualizarAmigos();
-            
+
         Console.WriteLine("informe o id do amigo que deseja editar");
 
         int IdAmigoEscolhido = Convert.ToInt32(Console.ReadLine());
 
 
         Amigo amigoEditado = ObterDadosAmigos();
-       bool Consegiueditar = repositorioamigo.EditarAmigos(IdAmigoEscolhido,amigoEditado);
+        bool Consegiueditar = repositorioamigo.EditarAmigos(IdAmigoEscolhido, amigoEditado);
 
     }
 
@@ -106,12 +133,12 @@ public class TelaAmigo
         Console.WriteLine("informe o Id do amigo que deseja excluir ");
         int IdEscolhido = Convert.ToInt32(Console.ReadLine());
 
-       bool consegiuExcluir = repositorioamigo.ExcluirAmigos(IdEscolhido);
+        bool consegiuExcluir = repositorioamigo.ExcluirAmigos(IdEscolhido);
 
 
 
     }
-       
+
 
 
 }

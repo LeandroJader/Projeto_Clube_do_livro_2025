@@ -1,5 +1,6 @@
 ﻿using Projeto_Clube_do_livro_2025.ModuloAmigo;
 using Projeto_Clube_do_livro_2025.ModuloCaixa;
+using Projeto_Clube_do_livro_2025.ModuloEmprestimo;
 using Projeto_Clube_do_livro_2025.ModuloRevista;
 using System.ComponentModel.Design;
 
@@ -153,10 +154,6 @@ internal class Program
                         break;
 
 
-                    case "2":
-                        Console.Clear();
-                        emprestimo.VizualizarEmprestimos();
-                        break;
 
                 }
 

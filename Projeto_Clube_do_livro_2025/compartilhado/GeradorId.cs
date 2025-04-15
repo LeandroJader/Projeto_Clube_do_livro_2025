@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projeto_Clube_do_livro_2025
+namespace Projeto_Clube_do_livro_2025.compartilhado
 {
     class GeradorId
     {

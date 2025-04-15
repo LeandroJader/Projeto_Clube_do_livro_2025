@@ -1,4 +1,5 @@
-﻿using Projeto_Clube_do_livro_2025.ModuloCaixa;
+﻿using Projeto_Clube_do_livro_2025.compartilhado;
+using Projeto_Clube_do_livro_2025.ModuloCaixa;
 using System;
 using System.Collections.Generic;
 using System.Linq;

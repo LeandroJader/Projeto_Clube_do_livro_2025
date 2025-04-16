@@ -91,14 +91,14 @@ public class TelaAmigo
     public void VizualizarAmigos()
     {
 
-        Console.WriteLine("vizualizando amigos ");
+        Console.WriteLine("AMIGOS CADASTRADOS ");
         Console.WriteLine();
 
-        Console.WriteLine("{0, -10} | {1, -15} | {2,-20} |  {3,-15} ",
+        Console.Write("{0, -10} | {1, -15} | {2,-20} |  {3,-15} ",
                              "Id", "nome", "nome responsavel", "telefone"
                   );
         Console.WriteLine();
-        Console.WriteLine();
+       
 
         Amigo[] amigosCadastrados = Repositorioamigo.SelecionarAmigos();
 
@@ -114,9 +114,11 @@ public class TelaAmigo
                 Console.WriteLine("{0, -10} | {1, -15} | {2,-20} |  {3,-15} ",
                                 a.Id, a.Nome, a.NomeResponsavel, a.Telefone
                      );
-
+            
             }
         }
+        Console.WriteLine();
+        Console.WriteLine();
         Console.WriteLine("Aperte ENTER para continuar");
         Console.ReadLine();
     }
@@ -207,8 +209,8 @@ public class TelaAmigo
 
             Amigo AmigoSelecionado = Repositorioamigo.SelecionarAmigoPorId(IdAmigo);
 
-        Console.WriteLine("{0, -10} | {1, -10} | {2, -20} | {3, -15} ",
-                          "Nome.amigo", "revista ", "data", "Dias de emprestimo");
+        Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3, -10} ",
+                          "Nome.amigo", "revista ", "data", "status de emprestimo");
         Console.WriteLine();
 
         Emprestimo[] emprestimos = Repositorioemprestimo.VizualizarEmprestimo();
@@ -223,8 +225,8 @@ public class TelaAmigo
             {
                 Emprestimo e = emprestimos[i];
 
-                Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3, -15} ",
-                                   e.Amigo.Nome, e.Revista.Titulo, e.Data.ToShortTimeString, e.Situacao);
+                Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3, -10} ",
+                                   e.Amigo.Nome, e.Revista.Titulo, e.Data.ToShortTimeString(), e.Situacao);
                 Console.WriteLine();
 
             }

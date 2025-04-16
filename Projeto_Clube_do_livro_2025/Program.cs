@@ -73,7 +73,7 @@ internal class Program
 
                     case "5":
                         Console.Clear();
-                        amigos.VizualizarEmprestimos();
+                       amigos.VizualizarEmprestimos();
                         break;
                 }
             }
@@ -161,10 +161,24 @@ internal class Program
                 {
 
                     case "1":Console.Clear();
-                        emprestimo.CadastrarEmprestimo();
+                        emprestimo.CadastarEmprestimo();
                         break;
 
 
+                    case "2":
+                        Console.Clear();
+                        emprestimo.RegistrarDevolucao();
+                        break;
+
+                    case "3":
+                        Console.Clear();
+                        emprestimo.VizualizarEmprestimoEmAberto();
+                        break;
+
+                    case "4":
+                        Console.Clear();
+                        emprestimo.VizualizarEmprestimoFechado();
+                        break;
 
                 }
 

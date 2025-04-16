@@ -165,30 +165,9 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
             DateTime AnoPublicaçao = Convert.ToDateTime(Console.ReadLine());
 
 
-            Console.WriteLine("-----------------------------");
-            Console.WriteLine("informe o status da revista  ");
-            Console.WriteLine("-----------------------------");
-            Console.WriteLine("1-  disponivel");
-            Console.WriteLine("2-  emprestada");
-            Console.WriteLine("3-  reservada");
-            Console.WriteLine();
+          ;
 
-            string statusResvista = Console.ReadLine();
-
-            if (statusResvista == "1")
-            {
-                statusResvista = "disponivel";
-            }
-            else if (statusResvista == "2")
-            {
-                statusResvista = "emprestada";
-            }
-            else
-            {
-                statusResvista = "reservada";
-            }
-
-
+            string statusResvista = "Disponível";
 
 
             Caixa CaixaSelecionada = repositoriocaixas.SelecionarCaixasPorId(IdCaixas);
@@ -202,7 +181,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
         public void vizualizarRevistas()
         {
             Console.WriteLine("{0, -10} | {1, -15} | {2, -10}     | {3,-15} |   {4, -15} |        {5, -15}",
-                               "Id", "Título", "Nº Edição", " Ano.public", "status disp, ", " caixa");
+                               "Id", "Título", "Nº Edição", " Ano.public", "status , ", " caixa");
 
             Console.WriteLine();
 

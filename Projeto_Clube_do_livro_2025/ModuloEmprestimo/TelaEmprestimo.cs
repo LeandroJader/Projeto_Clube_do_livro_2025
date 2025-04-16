@@ -35,77 +35,18 @@ namespace Projeto_Clube_do_livro_2025.ModuloEmprestimo
             Console.WriteLine();
             Console.WriteLine("1- para cadastar um novo empréstimo");
             Console.WriteLine("2- para Registrar uma devolução");
-            Console.WriteLine("3- para obter Data Devolução");
+            Console.WriteLine("3- vizualizar emprestimos em aberto");
+            Console.WriteLine("4- vizualizar emprestimos em Fechados");
+            Console.WriteLine("5- para obter Data Devolução");
             string Opcao = Console.ReadLine();
             return Opcao;
 
         }
 
-        public void VizualizarAmigos()
-        {
-
-            Console.WriteLine("vizualizando amigos ");
-            Console.WriteLine();
-
-            Console.WriteLine("{0, -10} | {1, -15} | {2,-20} |  {3,-15} ",
-                                 "Id", "nome", "nome responsavel", "telefone"
-                      );
-            Console.WriteLine();
-
-            Amigo[] amigosCadastrados = repositorioAmigo.SelecionarAmigos();
-
-            for (int i = 0; i < amigosCadastrados.Length; i++)
-            {
-                Amigo a = amigosCadastrados[i];
-
-                if (a == null) continue;
-
-                else
-                {
-
-                    Console.WriteLine("{0, -10} | {1, -15} | {2,-20} |  {3,-15} ",
-                                    a.Id, a.Nome, a.NomeResponsavel, a.Telefone
-                         );
-
-                }
-            }
-
-        }
-
-        public void vizualizarRevistas()
-        {
-            Console.WriteLine("{0, -10} | {1, -15} | {2, -10}     | {3,-15} |   {4, -15} |        {5, -15}",
-                               "Id", "Título", "Nº Edição", " Ano.public", "status disp, ", " caixa");
-
-            Console.WriteLine();
-
-            Revista[] revistascadastradas = repositorioRevista.VizualizarRevistas();
-
-
-            for (int i = 0; i < revistascadastradas.Length; i++)
-            {
-                if (revistascadastradas[i] == null) continue;
-
-                else
-                {
-                    Revista r = revistascadastradas[i];
-
-                    Console.WriteLine("{0, -10} | {1, -15} | {2, -10}     | {3,-15} |   {4, -15} |        {5, -15}",
-                                       r.Id, r.Titulo, r.NumeroEdicao, r.AnoPublicacao.ToShortDateString(), r.StatusEmprestimo, r.Caixa.Etiqueta);
-
-
-                    Console.WriteLine();
-                    break;
-                }
-
-            }
-            Console.WriteLine("pressione Enter para continuar");
-            Console.ReadLine();
-        }
 
 
 
-        public void CadastrarEmprestimo()
+        public void CadastarEmprestimo()
         {
             Console.WriteLine("Amigos Cadastrados");
             VizualizarAmigos();
@@ -123,7 +64,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloEmprestimo
 
                 if (erros.Length > 0)
                 {
-                    
+
                     Notificador.ExibirMensagem(erros, ConsoleColor.Red);
                     return;
                 }
@@ -190,7 +131,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloEmprestimo
 
             repositorioEmprestimo = new RepositorioEmprestimo();
 
-            Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3,-15} ",
+            Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3,-10} ",
                               "amigo", "revista", "data.abertura", "situação");
 
             Console.WriteLine();
@@ -217,8 +158,241 @@ namespace Projeto_Clube_do_livro_2025.ModuloEmprestimo
             Console.ReadLine();
         }
 
+        public void RegistrarDevolucao()
+            
+        {
+            
+            string erros = "";
+            VizualizarEmprestimos();
+            bool verddade = false;
+
+            while (true)
+            {
+
+                Emprestimo Devolucao = ObterDadosDevolucao();
+
+                if (erros.Length > 0)
+                {
+                    erros = repositorioEmprestimo.ValidarDevolucao(Devolucao);
+                    Notificador.ExibirMensagem(erros, ConsoleColor.Red);
+                    continue;
+                }
+                else
+                {
+                    bool verdade = true;
+                    repositorioEmprestimo.RegistrarDevolucoes(verdade , Devolucao);
+                    Notificador.ExibirMensagem("Devolução registrada com sucesso", ConsoleColor.Green);
+                    return;
+                }
+
+            }
+        }
+
+        public Emprestimo ObterDadosDevolucao()
+        {
+            Console.WriteLine("Informe O Id do Amigo que está devolvendo");
+            string Entrada = Console.ReadLine();
+
+            int IdAmigo = 0;
 
 
+
+            while (true)
+            {
+                if (int.TryParse(Entrada, out IdAmigo))
+                {
+                    break;
+
+                }
+                else
+                {
+                    Console.WriteLine("Informe Um número inteiro");
+                    continue;
+                }
+
+            }
+            Console.WriteLine("Informe o Id da revista que deseja devolver ");
+            string entradarevista = Console.ReadLine();
+
+            int IdRevista = 0;
+
+
+
+            while (true)
+            {
+                if (int.TryParse(entradarevista, out IdRevista))
+                {
+                    break;
+
+                }
+                else
+                {
+                    Console.WriteLine("Informe Um número inteiro");
+                    continue;
+                }
+
+            }
+
+
+            Amigo amigo = repositorioAmigo.SelecionarAmigoPorId(IdAmigo);
+             Revista devolvida = repositorioRevista.SelecionarRevistaPorId(IdRevista);
+
+
+            Console.WriteLine("Informe a data da devolução da revista (dd/mm/yyyy)");
+            DateTime DataDevolucao = Convert.ToDateTime(Console.ReadLine());
+
+            Console.WriteLine("informe a situação  da revista devolvida");
+            Console.WriteLine("--------------------------------");
+            Console.WriteLine("1- Disponinivel");
+            Console.WriteLine("-------------");
+            Console.WriteLine("2- emprestada");
+            Console.WriteLine("-------------");
+            Console.WriteLine("3- Reservada");
+
+            string SituacaoEmprestimo = "Disponivel";     
+
+            Emprestimo RevistaDevolvida = new Emprestimo(amigo, devolvida, DataDevolucao, SituacaoEmprestimo);
+
+            return RevistaDevolvida;
+          
+
+        }
+
+
+
+
+        public void VizualizarEmprestimoEmAberto()
+        {
+            Console.WriteLine("vizualizando amigos ");
+            Console.WriteLine();
+
+            Console.WriteLine("{0, -10} | {1, -15} | {2,-20} |  {3,-15} | {4,-15}",
+                     "Id", "nome", "nome responsavel", "Data", "status");
+
+
+            Console.WriteLine();
+
+            Emprestimo[] emprestimosEmAberto = repositorioEmprestimo.VizualizarEmprestimosEmAberto();
+
+            for (int i = 0; i < emprestimosEmAberto.Length; i++)
+            {
+                Emprestimo ab = emprestimosEmAberto[i];
+
+                if (ab == null) continue;
+
+                else
+                {
+
+                    Console.WriteLine("{0, -10} | {1, -15} | {2,-20} |  {3,-15} | {4, -15}",
+                                        ab.Id, ab.Amigo.Nome, ab.Revista.Titulo, ab.Data.ToLongDateString(), ab.Situacao
+                         );
+
+                }
+                Console.WriteLine();
+                Console.WriteLine("pressione ENTER para continuar");
+                Console.ReadLine();
+            }
+
+        }
+
+
+        public void VizualizarAmigos()
+        {
+
+            Console.WriteLine("vizualizando amigos ");
+            Console.WriteLine();
+
+            Console.WriteLine("{0, -10} | {1, -15} | {2,-20} |  {3,-15} ",
+                                 "Id", "nome", "nome responsavel", "telefone"
+                      );
+            Console.WriteLine();
+
+            Amigo[] amigosCadastrados = repositorioAmigo.SelecionarAmigos();
+
+            for (int i = 0; i < amigosCadastrados.Length; i++)
+            {
+                Amigo a = amigosCadastrados[i];
+
+                if (a == null) continue;
+
+                else
+                {
+
+                    Console.WriteLine("{0, -10} | {1, -15} | {2,-20} |  {3,-15} ",
+                                    a.Id, a.Nome, a.NomeResponsavel, a.Telefone
+                         );
+
+                }
+            }
+
+        }
+
+        public void vizualizarRevistas()
+        {
+            Console.WriteLine("{0, -10} | {1, -15} | {2, -10}     | {3,-15} |   {4, -15} |        {5, -15}",
+                               "Id", "Título", "Nº Edição", " Ano.public", "status disp, ", " caixa");
+
+            Console.WriteLine();
+
+            Revista[] revistascadastradas = repositorioRevista.VizualizarRevistas();
+
+
+            for (int i = 0; i < revistascadastradas.Length; i++)
+            {
+                if (revistascadastradas[i] == null) continue;
+
+                else
+                {
+                    Revista r = revistascadastradas[i];
+
+                    Console.WriteLine("{0, -10} | {1, -15} | {2, -10}     | {3,-15} |   {4, -15} |        {5, -15}",
+                                       r.Id, r.Titulo, r.NumeroEdicao, r.AnoPublicacao.ToShortDateString(), r.StatusEmprestimo, r.Caixa.Etiqueta);
+
+
+                    Console.WriteLine();
+                    break;
+                }
+
+            }
+            Console.WriteLine("pressione Enter para continuar");
+            Console.ReadLine();
+        }
+
+          public void  VizualizarEmprestimoFechado()
+        {
+            Console.WriteLine("vizualizando amigos ");
+            Console.WriteLine();
+
+            Console.WriteLine("{0, -10} | {1, -15} | {2,-20} |  {3,-15} | {4,-15}",
+                     "Id", "nome", "nome responsavel", "telefone", "status");
+
+
+            Console.WriteLine();
+
+           Emprestimo[] emprestimosFechado = repositorioEmprestimo.VizualizarEmprestimosFechados();
+
+            for (int i = 0; i < emprestimosFechado.Length; i++)
+            {
+                Emprestimo Ef = emprestimosFechado[i];
+
+                if (Ef == null) continue;
+
+                else
+                {
+
+                    Console.WriteLine("{0, -10} | {1, -15} | {2,-20} |  {3,-15} | {4, -15}",
+                                        Ef.Id, Ef.Amigo.Nome, Ef.Revista.Titulo, Ef.Data.ToShortDateString(), Ef.Situacao
+                         );
+
+                }
+                Console.WriteLine();
+                Console.WriteLine("pressione ENTER para continuar");
+                Console.ReadLine();
+            
+            }
+
+        }
+    
     }
 
 

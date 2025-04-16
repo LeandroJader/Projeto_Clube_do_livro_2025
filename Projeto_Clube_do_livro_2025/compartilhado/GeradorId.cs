@@ -1,4 +1,5 @@
 ﻿using Projeto_Clube_do_livro_2025.ModuloAmigo;
+using Projeto_Clube_do_livro_2025.ModuloEmprestimo;
 using Projeto_Clube_do_livro_2025.ModuloRevista;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Projeto_Clube_do_livro_2025.compartilhado
         public static int Idamigo = 0;
         public static int IdRevista = 0;
         public static int Idemprestimo = 0;
+        public static int IdDevolucao = 0;
         public static int GerarIdAmigo()
         {
 
@@ -40,6 +42,13 @@ namespace Projeto_Clube_do_livro_2025.compartilhado
             Idemprestimo++;
 
             return Idemprestimo;
+        }
+
+        public static int GerarIdDevolucao()
+        {
+            IdDevolucao++;
+
+            return IdDevolucao;
         }
     }
 

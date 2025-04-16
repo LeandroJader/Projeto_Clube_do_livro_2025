@@ -1,4 +1,5 @@
-﻿using Projeto_Clube_do_livro_2025.ModuloAmigo;
+﻿using Projeto_Clube_do_livro_2025.compartilhado;
+using Projeto_Clube_do_livro_2025.ModuloAmigo;
 using Projeto_Clube_do_livro_2025.ModuloCaixa;
 using Projeto_Clube_do_livro_2025.ModuloRevista;
 using System;
@@ -27,6 +28,8 @@ namespace Projeto_Clube_do_livro_2025.ModuloEmprestimo
         public static string MenuEmprestimo()
         {
             Console.Clear();
+
+
             Console.WriteLine("informe opção que deseja");
             Console.WriteLine("-----------------------------------");
             Console.WriteLine();
@@ -111,10 +114,30 @@ namespace Projeto_Clube_do_livro_2025.ModuloEmprestimo
             vizualizarRevistas();
             Console.WriteLine("---------------------------------------------------------------");
 
+            string erros = "";
+            while (true)
+            {
 
-            Emprestimo NovoEmprestimo = ObterDadosEmprestimo();
-            repositorioEmprestimo.CadastrarEmprestimo(NovoEmprestimo);
+                Emprestimo NovoEmprestimo = ObterDadosEmprestimo();
+                erros = repositorioEmprestimo.Validaremprestimos(NovoEmprestimo);
 
+                if (erros.Length > 0)
+                {
+                    
+                    Notificador.ExibirMensagem(erros, ConsoleColor.Red);
+                    return;
+                }
+
+                else
+                {
+                    {
+                        NovoEmprestimo.Situacao = "emprestada";
+                        repositorioEmprestimo.CadastrarEmprestimo(NovoEmprestimo);
+                        return;
+                    }
+                }
+
+            }
 
 
         }
@@ -129,7 +152,30 @@ namespace Projeto_Clube_do_livro_2025.ModuloEmprestimo
             DateTime DataInicialEmprestimo = DateTime.Now;
 
             Console.WriteLine("Informe a situação do emprestimo");
+            Console.WriteLine("--------------------------------");
+            Console.WriteLine("1- Disponinivel");
+            Console.WriteLine("-------------");
+            Console.WriteLine("2- emprestada");
+            Console.WriteLine("-------------");
+            Console.WriteLine("3- Reservada");
+
             string SituacaoEmprestimo = Console.ReadLine();
+
+            if (SituacaoEmprestimo == "1")
+            {
+                SituacaoEmprestimo = "Disponível";
+            }
+
+            if (SituacaoEmprestimo == "2")
+            {
+                SituacaoEmprestimo = "Emprestada";
+            }
+
+            if (SituacaoEmprestimo == "3")
+
+            {
+                SituacaoEmprestimo = "Reservada";
+            }
 
             Amigo AmigoSelecionado = repositorioAmigo.SelecionarAmigoPorId(IdEscolhidoAmigo);
             Revista RevistaSelecionada = repositorioRevista.SelecionarRevistaPorId(IdEscolhidoRevista);
@@ -141,6 +187,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloEmprestimo
         }
         public void VizualizarEmprestimos()
         {
+
             repositorioEmprestimo = new RepositorioEmprestimo();
 
             Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3,-15} ",

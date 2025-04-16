@@ -50,7 +50,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
 
                 
 
-                Caixa Novacaixa = ObterDadosCaixas();
+             Caixa Novacaixa = ObterDadosCaixas();
              erros = repositoriocaixas.ValidarACaixa(Novacaixa.Etiqueta, Novacaixa.Cor);
 
                 if (erros.Length > 0)
@@ -146,6 +146,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
                 {
                     Caixa a = caixascadastradas[i];
 
+                    Console.WriteLine("------------------------------------------------------------");
                     Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3, -10} | ",
                                        a.Id, a.Etiqueta, a.Cor, a.DiasDeEmprestimos);
                     Console.WriteLine();
@@ -160,22 +161,47 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
         public void EditarCaixas()
         {
             VizualizarCaixas();
-            Console.WriteLine();
-            Console.WriteLine("informe o Id da caixa que deseja Editar");
-            int IdEscolhido = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("insira a nova etiqueta de edição da caixa");
-            string etiqueta = Console.ReadLine();
 
-            Console.WriteLine("informe a cor da etiqueta");
-            string cor = Console.ReadLine();
 
-            Console.WriteLine("informe quantos dias de emprestimo essa edição possui ");
-            int DiasDeEmprestimo=Convert.ToInt32(Console.ReadLine());
+            string erros = "";
+            bool consegiuCadastrar = true;
+            while (consegiuCadastrar == true)
+            {
 
-            Caixa NovaCaixaEditada = new Caixa(etiqueta, cor, DiasDeEmprestimo);
 
-            NovaCaixaEditada = repositoriocaixas.EditarCaixas(IdEscolhido,NovaCaixaEditada);
+
+                Caixa CaixaEditada = ObterDadosCaixas();
+                erros = repositoriocaixas.ValidarACaixa(CaixaEditada.Etiqueta,CaixaEditada.Cor);
+
+                if (erros.Length > 0)
+                {
+                    Notificador.ExibirMensagem(erros, ConsoleColor.Red);
+                    continue;
+
+                }
+
+                else
+                {
+
+                    repositoriocaixas.CadastrarCaixas(CaixaEditada);
+                    Notificador.ExibirMensagem("Cadastro concluido ", ConsoleColor.Green);
+                    Console.WriteLine("------------------------------");
+                    Console.WriteLine("pressione ENTER para continuar");
+                    consegiuCadastrar = false;
+                }
+
+            }
+
+
+
+
+
+
+           
+
+
+
 
         }
         public void excluirCaixas()

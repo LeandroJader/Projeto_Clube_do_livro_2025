@@ -18,9 +18,11 @@ namespace Projeto_Clube_do_livro_2025.compartilhado
 
             Console.ResetColor();
 
+            Console.WriteLine();
             Console.WriteLine("pressione ENTER para continuar");
             
             Console.ReadLine();
+
             Console.WriteLine();
         }
     }

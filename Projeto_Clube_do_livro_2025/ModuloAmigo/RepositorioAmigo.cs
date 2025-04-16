@@ -32,7 +32,17 @@ namespace Projeto_Clube_do_livro_2025.ModuloAmigo
 
 
             for (int i = 0; i < AmigosCadastrados.Length; i++)
+
             {
+                if (AmigosCadastrados == null)
+                {
+                    Console.WriteLine("Não existe amigos cadastrados");
+                    Console.WriteLine();
+                    Console.WriteLine("pressione ENTER para prosseguir");
+                    Console.ReadLine();
+                    continue;
+                }
+
                 if (AmigosCadastrados[i].Id == null) continue;
 
                 else if (AmigosCadastrados[i].Id == IdSelecionado)
@@ -40,7 +50,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloAmigo
                     return AmigosCadastrados[i];
 
                 }
-            }
+            } 
 
             return null;
 
@@ -74,7 +84,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloAmigo
 
         public bool ExcluirAmigos(int Idescolhido)
         {
-
+            
      
             for (int i = 0; i < AmigosCadastrados.Length; i++)
             {

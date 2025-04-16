@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace Projeto_Clube_do_livro_2025.ModuloRevista
@@ -13,6 +14,8 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
     {
         public RepositorioCaixa repositoriocaixas;
         public RepositorioRevista repositoriorevista;
+
+
         public TelaRevista(RepositorioRevista repositoriorevista, RepositorioCaixa repositoriocaixa)
         {
 
@@ -39,6 +42,9 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
 
         public void VizualizarCaixas()
         {
+            
+            Console.WriteLine();
+
             Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3,-10} ",
                                 "Id", "etiqueta", "cor", "Dias de emprestimo");
 
@@ -67,8 +73,10 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
         }
 
 
-        public void CadastarrRevista()
+        public void CdastrarRevista()
         {
+            Console.WriteLine();            
+            Console.WriteLine();
 
             string erros = "";
             bool consegiuCadastrar = true;
@@ -84,7 +92,8 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
                 if (erros.Length > 0)
                 {
                     Notificador.ExibirMensagem(erros, ConsoleColor.Red);
-                    continue;
+                   
+                    return;
 
                 }
 
@@ -93,34 +102,45 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
 
                     repositoriorevista.CadastrarRevista(NovaRevista);
                     Notificador.ExibirMensagem("Cadastro concluido ", ConsoleColor.Green);
-                    Console.WriteLine("------------------------------");
-                    Console.WriteLine("pressione ENTER para continuar");
+                  
                     consegiuCadastrar = false;
                 }
 
             }
 
-        }          
+        }
 
-        
+
 
 
         public Revista ObterDadosRevista()
         {
+
+            Console.Clear();
             int IdCaixas;
             while (true)
             {
-                Console.Clear();
+
+                Console.WriteLine(" CAIXAS CADASTRADAS");
+                VizualizarCaixas();
+
+
+                Console.WriteLine();
                 Console.WriteLine("Informe o id da caixa que essa revista pertence:");
                 string entrada = Console.ReadLine();
 
                 if (int.TryParse(entrada, out IdCaixas))
                 {
-                    break; 
+                    break;
                 }
                 else
                 {
-                    Console.WriteLine("Informe um número interio.");
+                    Console.WriteLine("Um número inteiro deve ser informado .");
+                    Console.WriteLine();
+                    Console.WriteLine("pressione ENTER para prosseguir");
+                    Console.ReadLine();
+
+
                 }
             }
 
@@ -130,7 +150,16 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
             string Titulo = Console.ReadLine();
 
             Console.WriteLine("Informe o Número da Edição da revista");
-            int NumeroEdicao = Convert.ToInt32(Console.ReadLine());
+            string Entrada = Console.ReadLine();
+
+            int NumeroEdicao;
+            while (true)
+            {
+                if (int.TryParse(Entrada, out NumeroEdicao))
+                    break;
+
+
+            }
 
             Console.WriteLine("Informe o ano de publicação da revista (dd/mm/yyyy) ");
             DateTime AnoPublicaçao = Convert.ToDateTime(Console.ReadLine());
@@ -162,12 +191,10 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
 
 
 
-                Caixa CaixaSelecionada = repositoriocaixas.SelecionarCaixasPorId(IdCaixas);
+            Caixa CaixaSelecionada = repositoriocaixas.SelecionarCaixasPorId(IdCaixas);
 
             Revista NovaRevista = new Revista(Titulo, NumeroEdicao, AnoPublicaçao, statusResvista, CaixaSelecionada);
-            Console.WriteLine();
-            Console.WriteLine("pressione Enter para continuar");
-            Console.ReadLine();
+
 
             return NovaRevista;
         }
@@ -175,7 +202,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
         public void vizualizarRevistas()
         {
             Console.WriteLine("{0, -10} | {1, -15} | {2, -10}     | {3,-15} |   {4, -15} |        {5, -15}",
-                               "Id",      "Título", "Nº Edição", " Ano.public", "status disp, ",  " caixa");
+                               "Id", "Título", "Nº Edição", " Ano.public", "status disp, ", " caixa");
 
             Console.WriteLine();
 
@@ -191,32 +218,51 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
                     Revista r = revistascadastradas[i];
 
                     Console.WriteLine("{0, -10} | {1, -15} | {2, -10}     | {3,-15} |   {4, -15} |        {5, -15}",
-                                       r.Id, r.Titulo,r.NumeroEdicao, r.AnoPublicacao.ToShortDateString(), r.StatusEmprestimo, r.Caixa.Etiqueta);
+                                       r.Id, r.Titulo, r.NumeroEdicao, r.AnoPublicacao.ToShortTimeString(), r.StatusEmprestimo, r.Caixa.Etiqueta);
 
 
                     Console.WriteLine();
                     break;
                 }
-                
+
             }
             Console.WriteLine("pressione Enter para continuar");
             Console.ReadLine();
         }
         public void EditarRevista()
         {
-          
+
             vizualizarRevistas();
             Console.WriteLine();
 
 
             Console.WriteLine("informe o Id da revista que deseja editar");
-            int IdrevistaEditada = Convert.ToInt32(Console.ReadLine());
 
-            Revista RevistaEditada = ObterDadosRevista();   
+            string entrada = Console.ReadLine();
 
-            
+            int IdRevistaEditada = 0;
+            while (true)
+            {
+                if (int.TryParse(entrada, out IdRevistaEditada))
+                    break;
 
-            RevistaEditada = repositoriorevista.EditarRevista(IdrevistaEditada ,RevistaEditada);
+                else
+                {
+                    Console.WriteLine("Informe um número inteiro");
+                    Console.WriteLine();
+                    Console.WriteLine("pressione ENTER para continuar");
+                    Console.ReadLine();
+
+                }
+
+
+
+            }
+            Revista RevistaEditada = ObterDadosRevista();
+
+
+
+            RevistaEditada = repositoriorevista.EditarRevista(IdRevistaEditada, RevistaEditada);
 
 
         }
@@ -232,5 +278,8 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
 
 
         }
+
+
     }
 }
+

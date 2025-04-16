@@ -38,6 +38,7 @@ internal class Program
 
             string opcao = TelaPrincipal.MenuTelaPrincipal();
 
+
             if (opcao == "1")
             {
 
@@ -47,7 +48,7 @@ internal class Program
 
                 switch (opcaoEscolhida)
                 {
-
+                    
                     case "1":
                         Console.Clear();
                         amigos.CadastrarAmigos(); break;
@@ -125,7 +126,7 @@ internal class Program
                 {
                     case "1":
                         Console.Clear();
-                        Revistas.CadastarrRevista();
+                        Revistas.CdastrarRevista();
                         break;
 
                             case "2":

@@ -35,6 +35,12 @@ namespace Projeto_Clube_do_livro_2025.ModuloCaixa
 
             for (int i = 0; i < caixasCadastradas.Length; i++)
             {
+                if (caixasCadastradas[i] == null)
+                {
+                    continue;
+                }
+
+
                 if (caixasCadastradas[i].Id == IdSelecionado)
                 {
                     return caixasCadastradas[i];

@@ -65,12 +65,14 @@ public class TelaAmigo
             Console.Clear();
             Amigo NovoAmigo = ObterDadosAmigos();
             string erros = Repositorioamigo.ValidarAmigos(NovoAmigo.Nome, NovoAmigo.NomeResponsavel, NovoAmigo.Telefone);
-            Console.WriteLine("pressione ENTER para continuar");
-            Console.ReadLine();
+          
 
             if (erros.Length > 0)
             {
                 Notificador.ExibirMensagem(erros, ConsoleColor.Red);
+                Console.WriteLine();
+                Console.WriteLine("pressione ENTER para prosseguir");
+                Console.ReadLine();
                 continue;
 
             }
@@ -79,9 +81,7 @@ public class TelaAmigo
             {
 
                 Repositorioamigo.CadastrarAmigo(NovoAmigo);
-                Notificador.ExibirMensagem("Cadastro concluido ", ConsoleColor.Green);
-                Console.WriteLine("------------------------------");
-                Console.WriteLine("pressione ENTER para continuar");
+                Notificador.ExibirMensagem("Cadastro concluido ", ConsoleColor.Green);               
                 consegiuEditar = false;
             }
         }
@@ -110,7 +110,7 @@ public class TelaAmigo
 
             else
             {
-
+                Console.WriteLine("-----------------------------------------------------");
                 Console.WriteLine("{0, -10} | {1, -15} | {2,-20} |  {3,-15} ",
                                 a.Id, a.Nome, a.NomeResponsavel, a.Telefone
                      );
@@ -182,14 +182,30 @@ public class TelaAmigo
 
         }
     }
+
+
+    
     public void VizualizarEmprestimos()
     {
 
 
         Console.WriteLine("Informe o Id do Amigo que deseja vizualizar os emprestimos");
-        int IdEscolhido = Convert.ToInt32(Console.ReadLine());
+        string entrada = Console.ReadLine();
 
-        Amigo AmigoSelecionado = Repositorioamigo.SelecionarAmigoPorId(IdEscolhido);
+        int IdAmigo;
+        while (true)
+        {
+            if (int.TryParse(entrada, out IdAmigo))
+
+                break;
+        else
+        {
+
+            Console.WriteLine("Informe um número inteiro");
+        }
+        }
+
+            Amigo AmigoSelecionado = Repositorioamigo.SelecionarAmigoPorId(IdAmigo);
 
         Console.WriteLine("{0, -10} | {1, -10} | {2, -20} | {3, -15} ",
                           "Nome.amigo", "revista ", "data", "Dias de emprestimo");
@@ -208,7 +224,7 @@ public class TelaAmigo
                 Emprestimo e = emprestimos[i];
 
                 Console.WriteLine("{0, -10} | {1, -10} | {2, -10} | {3, -15} ",
-                                   e.Amigo.Nome, e.Revista.Titulo, e.Data, e.Situacao);
+                                   e.Amigo.Nome, e.Revista.Titulo, e.Data.ToShortTimeString, e.Situacao);
                 Console.WriteLine();
 
             }

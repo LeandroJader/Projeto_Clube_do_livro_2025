@@ -103,7 +103,7 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
 
             for (int i = 0; i < RevistasCadastradas.Length; i++)
             {
-                if (RevistasCadastradas.Length != null && titulo == RevistasCadastradas[i].Titulo)
+                if (RevistasCadastradas[i] != null && titulo == RevistasCadastradas[i].Titulo)
                 {
                     erros += "Não pode existir Títulos Duplicados escolha outro \n";
                     break;
@@ -121,7 +121,8 @@ namespace Projeto_Clube_do_livro_2025.ModuloRevista
             }
             if (caixaSelecionada == null)
             {
-                erros += "o campo caixa é obrigatorio";
+                erros += "Nenum Id de caixa Selecionado ou encontrado Tente Novamente!";
+                
             }
 
             return erros;
